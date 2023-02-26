@@ -6,6 +6,12 @@ if ! (( $+commands[fvm] )); then
     return
 fi
 
+# If the fvm/default/bin directory exists add it to the PATH
+if [ -d "$HOME/fvm/default/bin" ]; then
+  typeset -TUx PATH path
+  path=("$HOME/fvm/default/bin" $path)
+fi
+
 # Completions directory for `fvm` command
 local COMPLETIONS_DIR="${0:A:h}/completions"
 
